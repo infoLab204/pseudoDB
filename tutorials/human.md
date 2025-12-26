@@ -1,13 +1,11 @@
 ## Tutorial
-This tutorial provides a step-by-step walkthrough for calling genetic variants and performing related analyses. It is divided into three main sections: installing the required tools, downloading the necessary data, and running the variant-calling pipeline followed by downstream analysis. The workflow is demonstrated using human represented by a single sample. Variant calling for other species follows the same procedure, differing only in species names.    
-The tutorial assumes you are working in a Unix/Linux environment. Several directories will be generated throughout the process, and their structure is shown in Fig. 1. To follow along, you will need to install Python and Java-specifically Python 3.6 or later, and JDK 1.8 (required for GATK). Although the tutorial references tool versions used at the time it was written, you may use the latest available versions.    
+This tutorial provides a step-by-step walkthrough for calling genetic variants and performing related analyses. It is divided into three main sections: installing the required tools, downloading the necessary data, and running the variant-calling pipeline followed by downstream analysis. The workflow is demonstrated using human represented by a single sample. Variant calling for other species follows the same procedure, differing only in species names.<br>    
+The tutorial assumes you are working in a Unix/Linux environment. Several directories will be generated throughout the process, and their structure is shown in Fig. 1. To follow along, you will need to install Python and Java-specifically Python 3.6 or later, and JDK 1.8 (required for GATK). Although the tutorial references tool versions used at the time it was written, you may use the latest available versions.<br>    
 In the examples, the ‘$’ symbol indicates the command prompt, and lines beginning with ‘#’ represent comments that should be omitted when running commands. All executable commands are shown in italics.
 
 ![](https://user-images.githubusercontent.com/63629577/209596455-a7696db8-98a9-483e-a39c-ebd71579813e.png)   
 *Fig. 1 : The overall structure of the directories.*
 
-<br>
-Let’s get started!!
 <br><br><br>
 
 ## Part I: Install tools
