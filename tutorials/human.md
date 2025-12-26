@@ -65,9 +65,11 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 1. Create the required directories  
     a. If you are working with human data, create a directory named "human" in your home directory make a directory.    
 ___$mkdir human___      <br>
+
     b. In the "human" directory, create two subdirectories, "data" and "module" (see Fig. 1).    
    ___$cd human___    
    ___$mkdir data module___      <br>
+   
     c. Navigate to the "data" directory and create the three sub-directories: "fastq", "ref", and "db (see Fig. 1).    
    ___$cd data___    
    ___$mkdir fastq ref db___    
