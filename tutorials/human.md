@@ -6,7 +6,7 @@ In the examples, the ‘$’ symbol indicates the command prompt, and lines begi
 ![](https://user-images.githubusercontent.com/63629577/209596455-a7696db8-98a9-483e-a39c-ebd71579813e.png)   
 *Fig. 1 : The overall structure of the directories.*
 
-<br><br><br>
+<br>
 
 ## Part I: Install tools
 1.	Create a directory  
@@ -30,7 +30,7 @@ ___$cd bwa___    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 ___$make___  
 ___$make install___  
 
-    (note) The up-to-date versions of bwa and bwa2 are bwa-0.7.17 (Nov 7, 2017, https://sourceforge.net/projects/bio-bwa/files/) and bwa-mem2-2.2.1 (Mar 17, 2021, https://github.com/bwa-mem2/bwa-mem2/releases/), respectively. 
+    (note) The up-to-date versions of bwa and bwa2 are bwa-0.7.17 (Nov 7, 2017, https://sourceforge.net/projects/bio-bwa/files/) and bwa-mem2-2.3 (Jun 30, 2025, https://github.com/bwa-mem2/bwa-mem2/releases/), respectively. 
 
 4.	Download and install Samtools using the following commands.   
 ___$wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2___   
@@ -40,21 +40,24 @@ ___$mv samtools-1.16.1 	 samtools___		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ___$cd samtools___  				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# go to samtools and install samtools   
 ___$make___    
 ___$make install___   
-
+       (note) The most recent releases is samtools-1.22.1 (Jul 15, 2025) available from its respective project page: https://github.com/samtools/samtools/releases/ 
+     
 5.	Download picard using the following commands.   
 ___$mkdir picard___			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# create a directory under directory tools   
 ___$cd picard___  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# go to directory picard   
 ___$wget https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar___   
   
     (note) Make sure JDK version 1.8 has been installed.   
+    (note) Note: The most recent release is picard.3.4.0 (Apr 14, 2025) available from its  respective project page: https://github.com/broadinstitute/picard/releases/       
 
 
 6.	Download and install GATK using the following command.  
-___$wget https://storage.googleapis.com/gatk-software/package-archive/gatk/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2___      	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download GATK   
-___$bunzip2 GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar.bz2___      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# unzip and untar file   
-___$tar xvf GenomeAnalysisTK-3.8-1-0-gf15c1c3ef.tar___   
-___$mv GenomeAnalysisTK-3.8-1-0-gf15c1c3ef  gatk___         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change directory name   
-
+___$wget https://github.com/broadinstitute/gatk/releases/download/4.6.2.0/gatk-4.6.2.0.zip___      	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download GATK   
+___$unzip gatk-4.6.2.0.zip___      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# unzip and untar file   
+___$mv gatk-4.6.2.0 gatk___    
+___$cd gatk___      
+___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change file name   
+    (note) The most recent release is gatk-4.6.2.0 (Apr 15, 2025) available from its  respective project page: https://github.com/broadinstitute/gatk/releases/    
 	
 <br><br><br> 
 ## Part II: Data download
