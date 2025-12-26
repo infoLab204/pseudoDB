@@ -121,14 +121,14 @@ ___$mkdir human___
 
 ## Part III: Variant calling with analysis
 1.	Download “gatk.py” module from the github repository into directory “tools”.   
-<table style=border:3px solid black; border-collapse:collapse;><tr><td>	$curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download “gatk.py” module   
-</td></tr></table>
-<br>
+    ```
+    $curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py # download “gatk.py” module   
+    ```
 
 2.	Go to the directory “tools” and import the module as follows.   
-
-     ___>>>import  gatk___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# import the “gatk.py” module   
-  
+    ```
+    import  gatk       # import the “gatk.py” module   
+    ```  
     (note) The “gatk.py” module contains the following functions:   
     *	___set_wd( )___: set working directory   
     *	___pre_align( )___: create files from reference sequence for alignment   
@@ -140,18 +140,17 @@ ___$mkdir human___
     *	___qs_model( )___: estimate model-adjusted base quality score   
 
     (note) execute the above functions at directory “tools”.
-<br>
 
-3.	Create subdirectories under directory “module”. 
-  
+3.	Create subdirectories under directory “module”.    <br>
+
+       <b>Format: gatk.set_wd(“species_name”)</b>       
+	
     ```
-      Format: gatk.set_wd(“species_name”)   
+    gatk.set_wd("human") 
     ```
-    
-     ___>>>gatk.set_wd(“human”)___          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# create subdirectories   
 
     The list of subdirectories created under directory “module”:   
-    *	___align___ : results of aligning FASTQ to reference   
+    *	__align__ : results of aligning FASTQ to reference   
     *	___error___ : result of estimating sample error rate   
     *	___machine___ : result of recalibrating machine-provided base quality score    
     *	___model___ : result of estimating model-adjusted base quality score   
@@ -159,14 +158,14 @@ ___$mkdir human___
     
 <br>
 
-4.	Create file names for the alignment under directory “ref”.    
+4.	Create file names for the alignment under directory “ref”.  <br>  
+
+
+    <b>Format: gatk.pre_align(“species_name”, “reference_file”)   </b>
 
     ```
-    Format: gatk.pre_align(“species_name”, “reference_file”)   
-    ```
-  
-	 ___>>>gatk.pre_align(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”)___   
-    
+	 gatk.pre_align(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”)   
+    ```    
     The following files are created in the directory “ref”:
     *	GRCh38_full_analysis_set_plus_decoy_hla.fa.amb
     *	GRCh38_full_analysis_set_plus_decoy_hla.fa.ann
@@ -177,124 +176,99 @@ ___$mkdir human___
     *	GRCh38_full_analysis_set_plus_decoy_hla.dict 
 <br>
 
-5.	Align FASTQ file of single sample (Case 1) or all samples (Case 2) to the reference.    
+5.	Align FASTQ file of single samples to the reference.    <br>
 
-     ___Case 1 : align single sample___     
-     
+    <b> Format: gatk.align_fastq("species_name", "reference", "sample_name") </b>       
     ```
-    Format: gatk.align_fastq(“species_name”, “reference”, “sample_name”)   
-    ```
-    ___>>>gatk.align_fastq(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”,”HG00096”)___   
-    
+    gatk.align_fastq("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa","HG00096")       
+    ``` 
     (note) Files HG00096_aligned.bam and HG00096_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
 
     <br>
 
-     ___Case 2 : align all samples___           
-    
-    ```
-    Format: gatk.align_fastq(“species_name”, “reference”)   
-    ```
-    
-    ___>>>gatk.align_fastq(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”)___   
-    
-    (note) Files human_aligned.bam and human_aligned.bai are created in the directory “align” with all human samples.    
-<br>
-
-
 6.	Construct a pseudo database.   
-    ```
-    Format: gatk.pseudo_db(“species_name”, “reference”)   
-    ```
+
+    <b>Format: gatk.pseudo_db("species_name", "reference") </b>     
     (note) Constructed pseudoDB used all samples in the “align” directory.        
     <br>
-    
-    ___>>>gatk.pseudo_db(“human”,“GRCh38_full_analysis_set_plus_decoy_hla.fa”)___       
-    
-    (note) File “human_pseudoDB.vcf” and “human_pseudoDB.vcf.idx” are created in the directory “db”.    
-    
-<br>
-
-7.	Recalibrate machine-provided base quality score from single sample (Case 1) or all samples (Case 2).    
-
-     ___Case 1 : recalibrate single sample___   
-
-    ```
-	  Format: gatk.qs_recal(“species_name”, “reference”, “name of database”, “db_type”, “sample_name”)   
-    ```
-    
-    (note) The argument “db_type” can be either “dbSNP” or “pseudoDB”   <br><br>
-    
-     ___>>>gatk.qs_recal(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”, “dbSNP_b151.vcf”, “dbSNP”, ”HG00096”)___     
-     
-     (note) Files HG00096_dbSNP_recalibrated.bam and HG00096_dbSNP_recalibrated.bai are created in the directory “machine”.  <br><br> 
-
-     ___>>>gatk.qs_recal(“human”,“GRCh38_full_analysis_set_plus_decoy_hla.fa”, “human_pseudoDB.vcf”, “pseudoDB”, ”HG00096”)___      
-     
-     (note) Files HG00096_pseudoDB_recalibrated.bam and HG00096_pseudoDB_recalibrated.bai are created in the directory “machine”.  <br><br> 
-     
-     
-     ___Case 2 : recalibrate all samples___   
- 
-    ```
-	  Format: gatk.qs_recal(“species_name”, “reference”, “name of database”, “db_type”)   
-    ```
-      
-     ___>>>gatk.qs_recal(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”, “dbSNP_b151.vcf”, “dbSNP”)___     
-     
-     (note) Files human_dbSNP_recalibrated.bam and human_dbSNP_recalibrated.bai are created in the directory “machine”.  <br><br> 
-
-     ___>>>gatk.qs_recal(“human”,“GRCh38_full_analysis_set_plus_decoy_hla.fa”, “human_pseudoDB.vcf”, “pseudoDB”)___    
-     
-     (note) Files human_pseudoDB_recalibrated.bam and human_pseudoDB_recalibrated.bai are created in the directory “machine”.   
-
+    ``` 
+    gatk.pseudo_db("human","GRCh38_full_analysis_set_plus_decoy_hla.fa")       
+    ``` 
+    (note) File "human_pseudoDB.vcf.gz" and "human_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
     
 <br>
+
+7.	Recalibrate base quality score from samples    
+
+	  <b>Format: gatk.qs_recal("species_name", "reference", "name of database", "db_type", "sample_name")   </b>
+
+    
+    (note) The argument "db_type" can be either "dbSNP" or "pseudoDB"   <br><br>
+     ```
+     gatk.qs_recal("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_dbSNP.vcf.gz", "dbSNP", "HG00096")     
+     ```
+     (note) Files HG00096_dbSNP_recalibrated.bam and HG00096_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
+     ```
+     gatk.qs_recal("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_pseudoDB.vcf.gz", "pseudoDB", "HG00096")          
+     ```     
+     (note) Files HG00096_pseudoDB_recalibrated.bam and HG00096_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
+     
+  <br>
 
 8.	Call genetic variants.   
 
+    a. Call variants per-sample
+	  <b>Format: gatk.variant_call("species_name", "reference", "db_type","sample_name")  </b> 
+
     ```
-	  Format: gatk.variant_call(“species_name”, “reference”, “db_type”)   
+    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP","HG00096")
+    ```  
+     (note) Files "HG00096_dbSNP.g.vcf.gz" and "HG00096_dbSNP.g.vcf.gz.tbi" are created in the directory "variants".   <br><br>
     ```
-  
-     ___>>>gatk.variant_call(“human”,“GRCh38_full_analysis_set_plus_decoy_hla.fa”, “dbSNP”)___  
-  
-     (note) Files “human_dbSNP_variant_calling.vcf” and “human_dbSNP_variant_calling.vcf.idx” are created in the directory “variants”.   <br><br>
-  
-     ___>>>gatk.variant_call(“human”,“GRCh38_full_analysis_set_plus_decoy_hla.fa”, “pseudoDB”)___   
-  
-    (note) FIles “human_pseudoDB_variant_calling.vcf” and “human_pseudoDB_variant_calling.vcf.idx” are created in the directory “variants”.   
-    
+    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB","HG00096") 
+    ```
+    (note) FIles "HG00096_pseudoDB.g.vcf.gz" and "HG00096_pseudoDB.g.vcf.gz.tbi" are created in the directory "variants".
+  	
+    b. Joint-Call Cohort
+  	  <b>Format: gatk.variant_joint_call("species_name", "reference", "db_type")  </b>
+
+    ```
+    gatk.variant_joint_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP")
+    ```  
+     (note) Files "human_dbSNP_variants.vcf.gz" and "human_dbSNP_variants.vcf.gz.tbi" are created in the directory "variants".   <br><br>
+    ```
+    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB") 
+    ```
+    (note) FIles "human_pseudoDB_variants.vcf.gz" and "human_pseudoDB_variants.vcf.gz.tbi" are created in the directory "variants".
 <br>
 
  9.	Estimate sample error rate   
   
+	  <b> Format: gatk.error_rate("species_name", "sample_name", "reference", "name of database", "db_type")   </b>
     ```
-	  Format: gatk.error_rate(“species_name”, “sample_name”, “reference”, “name of database”, “db_type”)   
-    ```
-    ___>>>gatk.error_rate(“human”,“HG00096”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”, “dbSNP_b151.vcf”, “dbSNP”)___   
-    
-    (note) File “HG00096_dbSNP_erate” is created in the directory “error”.   <br><br>
-    
-    ___>>>gatk.error_rate(“human”,“HG00096”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”, “human_pseudoDB.vcf”, “pseudoDB”)___   
-    
-    (note) File “HG00096_pseudoDB_erate” is created in the directory “error”.
+    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_dbSNP.vcf.gz", "dbSNP")   
+    ```    
+    (note) File "HG00096_dbSNP_erate" is created in the directory "error".   <br><br>
+    ```    
+    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_pseudoDB.vcf.gz", "pseudoDB")   
+    ```    
+    (note) File "HG00096_pseudoDB_erate" is created in the directory "error".
   
   <br>
 
 10.	Estimate model-adjusted base quality score.   
 
-    ```
-    Format: gatk.qs_model(“species_name”, “sample_name”, “db_type”)   
-    ```
-  
-      ___>>>gatk.qs_model(“human”,“HG00096”, “dbSNP”)___   
-  
-      (note) File “HG00096_dbSNP_qs” is created in the directory “model”   <br><br>
-  
-      ___>>>gatk.qs_model(“human”,“HG00096”, “pseudoDB”)___  
-  
-      (note) File “HG00096_pseudoDB_qs” is created in directory “model”   
+
+    <b> Format: gatk.qs_model("species_name", "sample_name", "db_type")</b>   
+
+    ``` 
+    gatk.qs_model("human","HG00096", "dbSNP")___   
+    ```  
+      (note) File "HG00096_dbSNP_qs" is created in the directory "model"   <br><br>
+    ```  
+    gatk.qs_model("human","HG00096", "pseudoDB") 
+    ```  
+      (note) File "HG00096_pseudoDB_qs" is created in directory "model"   
   
 <br><br>
 ####  End of tutorial  
