@@ -67,10 +67,10 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 
 ## Part II: Data download
 1. Create the required directories  
-    a. If you are working with human data, create a directory named "human" in your home directory.    
-___$mkdir human___      <br>
+    a. If you are working with human data, create a directory named "rice" in your home directory.    
+___$mkdir rice___      <br>
 
-    b. In the "human" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
+    b. In the "rice" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
    ___$cd human___    
    ___$mkdir data module___      <br>
    
@@ -85,36 +85,28 @@ ___$mkdir human___      <br>
 
 3.	Navigate to the “fastq” directory and download FASTQ file
     (note) You can download more than one sample for variant calling, but in this tutorial we will focus on using just a single sample.      <br>       
-    a. Visit the website: https://www.internationalgenome.org/data-portal/sample.       <br>
+    a. Visit the website: a. https://www.ebi.ac.uk/ena/browser/view/PRJEB6180?show=reads.       <br>
   	
-    b. Search for the sample “HG00096” (see Fig. 2).    <br>
-	
-  	![image](https://user-images.githubusercontent.com/63629577/209597435-7c156350-bb4a-4d1d-9b73-220ea83d35ff.png)     
-    *Fig. 2: https://www.internationalgenome.org/data-portal/sample.*        <br>
-	
-    c. Select “HG00096” under the 1 matching sample results.
-  	
-    d. Under Data Types, choose “sequence,” and under Technologies, select “Low coverage WGS.” For sample HG00096, you will see six available FASTQ files (see Fig. 3).    
-  	![image](https://user-images.githubusercontent.com/63629577/209597483-24b1a42b-becb-40e6-af57-b8bf25a463e8.png)   
-    *Fig. 3: Result of searching HG00096.*
-  	
-    e. Navigate to the directory “fastq” and download the matching data (FASTQ) files.    
+    b. Search for the sample “SAMEA2569416” for IRIS_313-10886.    <br>
+	  	
+    c. Navigate to the directory “fastq” and download the matching data (FASTQ) files.    
    ___$cd fastq___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062634/SRR062634_1.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062634/SRR062634_2.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062635/SRR062635_1.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062635/SRR062635_2.fastq.gz___    	   
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062641/SRR062641_1.fastq.gz___	       
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062641/SRR062641_2.fastq.gz___    	   
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR605/ERR605262/ERR605262_1.fastq.gz___    
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR605/ERR605262/ERR605262_2.fastq.gz___    
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR605/ERR605263/ERR605263_1.fastq.gz___    
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR605/ERR605263/ERR605263_2.fastq.gz___    	   
+  
 
-    f. Combine the FASTQ files and rename the resulting merged files.    
-    __$zcat SRR062634_1.fastq.gz SRR062635_1.fastq.gz SRR062641_1.fastq.gz | gzip -c > HG00096_1.fastq.gz__    
-    __$zcat SRR062634_2.fastq.gz SRR062635_2.fastq.gz SRR062641_2.fastq.gz | gzip -c > HG00096_2.fastq.gz__    
+    d. Combine the FASTQ files and rename the resulting merged files.    
+    __$zcat ERR605262_1.fastq.gz ERR605263_1.fastq.gz | gzip -c > IRIS_313-10886_1.fastq.gz__    
+    __$zcat ERR605262_1.fastq.gz ERR605263_1.fastq.gz | gzip -c > IRIS_313-10886_1.fastq.gz__    
 
 4.	Navigate to the “ref” directory and download the reference sequence    
    ___$cd ref___    	    
-  ___$wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download human reference sequence   
-  
+  ___$wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/plant/Oryza_sativa/all_assembly_versions/GCA_001433935.1_IRGSP-1.0/GCA_001433935.1_IRGSP-1.0_genomic.fna.gz___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download human reference sequence   
+   __$gzip -d GCA_001433935.1_IRGSP-1.0_genomic.fna.gz__   # unzip    
+   __$mv GCA_001433935.1_IRGSP-1.0_genomic.fna IRGSP-1.0_genome_full.fa__  # change reference name
+  	
 5.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
     a.	Download dbSNP of human and assign a new name to it.   
       ___$wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
