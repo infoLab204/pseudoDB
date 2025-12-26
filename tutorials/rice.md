@@ -67,7 +67,7 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 
 ## Part II: Data download
 1. Create the required directories  
-    a. If you are working with human data, create a directory named "rice" in your home directory.    
+    a. If you are working with rice data, create a directory named "rice" in your home directory.    
 ___$mkdir rice___      <br>
 
     b. In the "rice" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
