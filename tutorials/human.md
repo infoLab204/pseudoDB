@@ -64,10 +64,10 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 ## Part II: Data download
 1. Create the required directories  
     a. If you are working with human data, create a directory named "human" in your home directory make a directory.    
-___$mkdir human___      
+___$mkdir human___      <br>
     b. In the "human" directory, create two subdirectories, "data" and "module" (see Fig. 1).    
    ___$cd human___    
-   ___$mkdir data module___      
+   ___$mkdir data module___      <br>
     c. Navigate to the "data" directory and create the three sub-directories: "fastq", "ref", and "db (see Fig. 1).    
    ___$cd data___    
    ___$mkdir fastq ref db___    
@@ -200,16 +200,16 @@ ___$mkdir human___
 
 7.	Recalibrate base quality score from samples    
 
-	  <b>Format: gatk.qs_recal("species_name", "reference", "name of database", "db_type", "sample_name")   </b>
+	  <b>Format: gatk.qs_recal("species_name", "reference", "db_type", "sample_name")   </b>
 
     
     (note) The argument "db_type" can be either "dbSNP" or "pseudoDB"   <br><br>
      ```
-     gatk.qs_recal("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_dbSNP.vcf.gz", "dbSNP", "HG00096")     
+     gatk.qs_recal("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP", "HG00096")     
      ```
      (note) Files HG00096_dbSNP_recalibrated.bam and HG00096_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
      ```
-     gatk.qs_recal("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_pseudoDB.vcf.gz", "pseudoDB", "HG00096")          
+     gatk.qs_recal("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB", "HG00096")          
      ```     
      (note) Files HG00096_pseudoDB_recalibrated.bam and HG00096_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
      
