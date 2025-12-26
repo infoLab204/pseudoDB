@@ -5,7 +5,7 @@ The tutorial assumes you are working in a Unix/Linux environment. Several direct
 
 In the examples, the ‘$’ symbol indicates the command prompt, and lines beginning with ‘#’ represent comments that should be omitted when running commands. All executable commands are shown in italics.
 
-![](https://user-images.githubusercontent.com/63629577/209596455-a7696db8-98a9-483e-a39c-ebd71579813e.png)   
+![](https://github.com/user-attachments/assets/2763063c-48c1-4f1d-83a6-f3c43a7db296")   
 *Fig. 1 : The overall structure of the directories.*
 
 <br>
