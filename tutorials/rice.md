@@ -62,11 +62,11 @@ ___$mv GenomeAnalysisTK-3.8-1-0-gf15c1c3ef  gatk___         &nbsp;&nbsp;&nbsp;&n
 <br><br><br> 
 ## Part II: Data download
 1. Create directories  
-    a. Assuming that you are working with human data, make a directory “human” under your home directory.  
-    b. Make directories “data” and “module” under directory “human” (see Fig. 1).   
-    c. Go to the directory “data” and create the following three sub-directories: “fastq”, “ref”, “db” (see Fig. 1).  
+    a. Assuming that you are working with human data, make a directory "rice" under your home directory.  
+    b. Make directories "data" and "module" under directory "human" (see Fig. 1).   
+    c. Go to the directory "data" and create the following three sub-directories: "fastq", "ref", "db" (see Fig. 1).  
 
-2.	Download the following data sets in the directory “data”.  
+2.	Download the following data sets in the directory "data".  
     *	FASTQ
     *	reference sequence
     *	databases of variants
