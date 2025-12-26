@@ -67,11 +67,11 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 
 ## Part II: Data download
 1. Create the required directories  
-    a. If you are working with human data, create a directory named "human" in your home directory.    
+    a. If you are working with sheep data, create a directory named "sheep" in your home directory.    
 ___$mkdir human___      <br>
 
-    b. In the "human" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
-   ___$cd human___    
+    b. In the "sheep" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
+   ___$cd sheep___    
    ___$mkdir data module___      <br>
    
     c. Navigate to the "data" directory and create the three sub-directories: "fastq", "ref", and "db" (see Fig. 1).    
@@ -85,43 +85,29 @@ ___$mkdir human___      <br>
 
 3.	Navigate to the “fastq” directory and download FASTQ file
     (note) You can download more than one sample for variant calling, but in this tutorial we will focus on using just a single sample.      <br>       
-    a. Visit the website: https://www.internationalgenome.org/data-portal/sample.       <br>
+    a. Visit the website: https://www.ebi.ac.uk/ena/browser/view/PRJNA160933.       <br>
   	
-    b. Search for the sample “HG00096” (see Fig. 2).    <br>
+    b. Search for the sample "SRR501898".    <br>
 	
-  	![image](https://user-images.githubusercontent.com/63629577/209597435-7c156350-bb4a-4d1d-9b73-220ea83d35ff.png)     
-    *Fig. 2: https://www.internationalgenome.org/data-portal/sample.*        <br>
-	
-    c. Select “HG00096” under the 1 matching sample results.
-  	
-    d. Under Data Types, choose “sequence,” and under Technologies, select “Low coverage WGS.” For sample HG00096, you will see six available FASTQ files (see Fig. 3).    
-  	![image](https://user-images.githubusercontent.com/63629577/209597483-24b1a42b-becb-40e6-af57-b8bf25a463e8.png)   
-    *Fig. 3: Result of searching HG00096.*
-  	
-    e. Navigate to the directory “fastq” and download the matching data (FASTQ) files.    
+    c. Navigate to the directory “fastq” and download the matching data (FASTQ) files.    
    ___$cd fastq___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062634/SRR062634_1.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062634/SRR062634_2.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062635/SRR062635_1.fastq.gz___    
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062635/SRR062635_2.fastq.gz___    	   
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062641/SRR062641_1.fastq.gz___	       
-   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR062/SRR062641/SRR062641_2.fastq.gz___    	   
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR501/SRR501898/SRR501898_1.fastq.gz___    
+   ___$wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR501/SRR501898/SRR501898_2.fastq.gz___    
 
-    f. Combine the FASTQ files and rename the resulting merged files.    
-    __$zcat SRR062634_1.fastq.gz SRR062635_1.fastq.gz SRR062641_1.fastq.gz | gzip -c > HG00096_1.fastq.gz__    
-    __$zcat SRR062634_2.fastq.gz SRR062635_2.fastq.gz SRR062641_2.fastq.gz | gzip -c > HG00096_2.fastq.gz__    
 
 4.	Navigate to the “ref” directory and download the reference sequence    
    ___$cd ref___    	    
-  ___$wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download human reference sequence   
-  
-5.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
+  ___$wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/vertebrate_mammalian/Ovis_aries/latest_assembly_versions/GCA_000298735.2_Oar_v4.0/GCA_000298735.2_Oar_v4.0_genomic.fna.gz___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download sheep reference sequence   
+  __$gzip -d GCA_000298735.2_Oar_v4.0_genomic.fna.gz__  # unzip
+  __$ mv GCA_000298735.2_Oar_v4.0_genomic.fna oar_ref_Oar_v4.0_full.fa__  # change reference name
+
+6.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
     a.	Download dbSNP of human and assign a new name to it.   
-      ___$wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
-      ___$mv 00-All.vcf.gz      dbSNP_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
+      ___$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/sheep_9940/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
+      ___$mv 00-All.vcf.gz      sheep_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
 
     b.	Download the pseudoDB of human    
-      https://zenodo.org/record/7488070/files/human_pseudoDB.vcf.gz?download=1   
+      https://zenodo.org/record/7488425/files/sheep_pseudoDB.vcf.gz?download=1       
       
 <br>
 
