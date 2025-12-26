@@ -3,7 +3,7 @@ This tutorial provides a step-by-step walkthrough for calling genetic variants a
 The tutorial assumes you are working in a Unix/Linux environment. Several directories will be generated throughout the process, and their structure is shown in Fig. 1. To follow along, you will need to install Python and Java-specifically Python 3.6 or later, and JDK 1.8 (required for GATK). Although the tutorial references tool versions used at the time it was written, you may use the latest available versions.<br>    
 In the examples, the ‘$’ symbol indicates the command prompt, and lines beginning with ‘#’ represent comments that should be omitted when running commands. All executable commands are shown in italics.
 
-![](https://user-images.githubusercontent.com/63629577/209596455-a7696db8-98a9-483e-a39c-ebd71579813e.png)   
+![](https://github.com/user-attachments/assets/8beda2e8-2b1d-41aa-96eb-64352399bcf5)   
 *Fig. 1 : The overall structure of the directories.*
 
 <br>
