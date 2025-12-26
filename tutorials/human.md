@@ -120,16 +120,16 @@ ___$mkdir human___
 <br>
 
 ## Part III: Variant calling with analysis
-1.	Download “gatk.py” module from the github repository into directory “tools”.   
+1.	Download "gatk.py" module from the github repository into directory "tools".   
     ```
-    $curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py # download “gatk.py” module   
+    $curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py # download "gatk.py" module   
     ```
 
-2.	Go to the directory “tools” and import the module as follows.   
+2.	Go to the directory "tools" and import the module as follows.   
     ```
-    import  gatk       # import the “gatk.py” module   
+    import  gatk       # import the "gatk.py" module   
     ```  
-    (note) The “gatk.py” module contains the following functions:   
+    (note) The "gatk.py" module contains the following functions:   
     *	___set_wd( )___: set working directory   
     *	___pre_align( )___: create files from reference sequence for alignment   
     *   ___align_fastq( )___: align FASTQ to reference sequence     
@@ -139,17 +139,17 @@ ___$mkdir human___
     *	___error_rate()____ : estimate error rate of sample   
     *	___qs_model( )___: estimate model-adjusted base quality score   
 
-    (note) execute the above functions at directory “tools”.
+    (note) execute the above functions at directory "tools".
 
-3.	Create subdirectories under directory “module”.    <br>
+3.	Create subdirectories under directory "module".    <br>
 
-       <b>Format: gatk.set_wd(“species_name”)</b>       
+       <b>Format: gatk.set_wd("species_name")</b>       
 	
     ```
     gatk.set_wd("human") 
     ```
 
-    The list of subdirectories created under directory “module”:   
+    The list of subdirectories created under directory "module":   
     *	__align__ : results of aligning FASTQ to reference   
     *	___error___ : result of estimating sample error rate   
     *	___machine___ : result of recalibrating machine-provided base quality score    
@@ -158,15 +158,15 @@ ___$mkdir human___
     
 <br>
 
-4.	Create file names for the alignment under directory “ref”.  <br>  
+4.	Create file names for the alignment under directory "ref".  <br>  
 
 
-    <b>Format: gatk.pre_align(“species_name”, “reference_file”)   </b>
+    <b>Format: gatk.pre_align("species_name", "reference_file")   </b>
 
     ```
-	 gatk.pre_align(“human”, “GRCh38_full_analysis_set_plus_decoy_hla.fa”)   
+	 gatk.pre_align("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa")   
     ```    
-    The following files are created in the directory “ref”:
+    The following files are created in the directory "ref":
     *	GRCh38_full_analysis_set_plus_decoy_hla.fa.amb
     *	GRCh38_full_analysis_set_plus_decoy_hla.fa.ann
     *	GRCh38_full_analysis_set_plus_decoy_hla.fa.bwt
