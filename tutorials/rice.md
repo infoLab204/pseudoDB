@@ -108,7 +108,7 @@ ___$mkdir rice___      <br>
    __$mv GCA_001433935.1_IRGSP-1.0_genomic.fna IRGSP-1.0_genome_full.fa__  # change reference name
   	
 5.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
-    a.	Download dbSNP of human and assign a new name to it.   
+    a.	Download dbSNP of rice and assign a new name to it.   
       ___$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/rice_4530/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
       ___$mv 00-All.vcf.gz      rice_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
 
@@ -180,7 +180,7 @@ ___$mkdir rice___      <br>
     ```
     gatk.align_fastq("rice", "IRGSP-1.0_genome_full.fa","IRIS_313-10886")       
     ``` 
-    (note) Files IRIS_313-10886_aligned.bam and HG00096_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
+    (note) Files IRIS_313-10886_aligned.bam and IRIS_313-10886_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
 
     <br>
 
