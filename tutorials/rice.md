@@ -71,7 +71,7 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 ___$mkdir rice___      <br>
 
     b. In the "rice" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
-   ___$cd human___    
+   ___$cd rice___    
    ___$mkdir data module___      <br>
    
     c. Navigate to the "data" directory and create the three sub-directories: "fastq", "ref", and "db" (see Fig. 1).    
