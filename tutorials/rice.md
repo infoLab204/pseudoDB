@@ -103,24 +103,24 @@ ___$mkdir rice___      <br>
 
 4.	Navigate to the “ref” directory and download the reference sequence    
    ___$cd ref___    	    
-  ___$wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/plant/Oryza_sativa/all_assembly_versions/GCA_001433935.1_IRGSP-1.0/GCA_001433935.1_IRGSP-1.0_genomic.fna.gz___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download human reference sequence   
+  ___$wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/plant/Oryza_sativa/all_assembly_versions/GCA_001433935.1_IRGSP-1.0/GCA_001433935.1_IRGSP-1.0_genomic.fna.gz___    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download rice reference sequence   
    __$gzip -d GCA_001433935.1_IRGSP-1.0_genomic.fna.gz__   # unzip    
    __$mv GCA_001433935.1_IRGSP-1.0_genomic.fna IRGSP-1.0_genome_full.fa__  # change reference name
   	
 5.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
     a.	Download dbSNP of human and assign a new name to it.   
-      ___$wget https://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
-      ___$mv 00-All.vcf.gz      dbSNP_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
+      ___$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/rice_4530/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
+      ___$mv 00-All.vcf.gz      rice_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
 
-    b.	Download the pseudoDB of human    
-      https://zenodo.org/record/7488070/files/human_pseudoDB.vcf.gz?download=1   
+    b.	Download the pseudoDB of rice    
+      https://zenodo.org/record/7488383/files/rice_pseudoDB.vcf.gz?download=1       
       
 <br>
 
 ## Part III: Variant calling with analysis
 1.	Download "gatk.py" module from the github repository into directory "tools".   
     ```
-    $curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py # download "gatk.py" module   
+    $curl -L -O https://github.com/infoLab204/pseudoDB/pipeline/raw/main/gatk.py # download "gatk.py" module   
     ```
 
 2.	Go to the directory "tools" and import the module as follows.   
@@ -144,7 +144,7 @@ ___$mkdir rice___      <br>
        <b>Format: gatk.set_wd("species_name")</b>       
 	
     ```
-    gatk.set_wd("human") 
+    gatk.set_wd("rice") 
     ```
 
     The list of subdirectories created under directory "module":   
@@ -162,25 +162,25 @@ ___$mkdir rice___      <br>
     <b>Format: gatk.pre_align("species_name", "reference_file")   </b>
 
     ```
-	 gatk.pre_align("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa")   
+	 gatk.pre_align("rice", "IRGSP-1.0_genome_full.fa”")   
     ```    
     The following files are created in the directory "ref":
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.amb
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.ann
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.bwt
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.pac
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.sa
-    *	GRCh38_full_analysis_set_plus_decoy_hla.dict 
+    *	IRGSP-1.0_genome_full.fa.amb
+    *	IRGSP-1.0_genome_full.fa.ann
+    *	IRGSP-1.0_genome_full.fa.bwt
+    *	IRGSP-1.0_genome_full.fa.fai
+    *	IRGSP-1.0_genome_full.fa.pac
+    *	IRGSP-1.0_genome_full.fa.sa
+    *	IRGSP-1.0_genome_full.dict 
 <br>
 
 5.	Align FASTQ file of single samples to the reference.    <br>
 
     <b> Format: gatk.align_fastq("species_name", "reference", "sample_name") </b>       
     ```
-    gatk.align_fastq("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa","HG00096")       
+    gatk.align_fastq("rice", "IRGSP-1.0_genome_full.fa","IRIS_313-10886")       
     ``` 
-    (note) Files HG00096_aligned.bam and HG00096_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
+    (note) Files IRIS_313-10886_aligned.bam and HG00096_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
 
     <br>
 
@@ -190,9 +190,9 @@ ___$mkdir rice___      <br>
     (note) Constructed pseudoDB used all samples in the “align” directory.        
     <br>
     ``` 
-    gatk.pseudo_db("human","GRCh38_full_analysis_set_plus_decoy_hla.fa")       
+    gatk.pseudo_db("rice","IRGSP-1.0_genome_full.fa")       
     ``` 
-    (note) File "human_pseudoDB.vcf.gz" and "human_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
+    (note) File "rice_pseudoDB.vcf.gz" and "rice_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
     
 <br>
 
@@ -203,13 +203,13 @@ ___$mkdir rice___      <br>
     
     (note) The argument "db_type" can be either "dbSNP" or "pseudoDB"   <br><br>
      ```
-     gatk.qs_recal("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP", "HG00096")     
+     gatk.qs_recal("rice", "IRGSP-1.0_genome_full.fa", "dbSNP", "IRIS_313-10886")     
      ```
-     (note) Files HG00096_dbSNP_recalibrated.bam and HG00096_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
+     (note) Files IRIS_313-10886_dbSNP_recalibrated.bam and IRIS_313-10886_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
      ```
-     gatk.qs_recal("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB", "HG00096")          
+     gatk.qs_recal("rice","IRGSP-1.0_genome_full.fa", "pseudoDB", "IRIS_313-10886")          
      ```     
-     (note) Files HG00096_pseudoDB_recalibrated.bam and HG00096_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
+     (note) Files IRIS_313-10886_pseudoDB_recalibrated.bam and IRIS_313-10886_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
      
   <br>
 
@@ -219,38 +219,38 @@ ___$mkdir rice___      <br>
 	  <b>Format: gatk.variant_call("species_name", "reference", "db_type","sample_name")  </b> 
 
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP","HG00096")
+    gatk.variant_call("rice","IRGSP-1.0_genome_full.fa", "dbSNP","IRIS_313-10886")
     ```  
-     (note) Files "HG00096_dbSNP.g.vcf.gz" and "HG00096_dbSNP.g.vcf.gz.tbi" are created in the directory "variants".   <br><br>
+     (note) Files "IRIS_313-10886_dbSNP.g.vcf.gz" and "IRIS_313-10886_dbSNP.g.vcf.gz.tbi" are created in the directory "variants".   <br><br>
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB","HG00096") 
+    gatk.variant_call("rice","IRGSP-1.0_genome_full.fa", "pseudoDB","IRIS_313-10886") 
     ```
-    (note) FIles "HG00096_pseudoDB.g.vcf.gz" and "HG00096_pseudoDB.g.vcf.gz.tbi" are created in the directory "variants".
+    (note) FIles "IRIS_313-10886_pseudoDB.g.vcf.gz" and "IRIS_313-10886_pseudoDB.g.vcf.gz.tbi" are created in the directory "variants".
   	
     b. Joint-Call Cohort
   	  <b>Format: gatk.variant_joint_call("species_name", "reference", "db_type")  </b>
 
     ```
-    gatk.variant_joint_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP")
+    gatk.variant_joint_call("rice","IRGSP-1.0_genome_full.fa", "dbSNP")
     ```  
-     (note) Files "human_dbSNP_variants.vcf.gz" and "human_dbSNP_variants.vcf.gz.tbi" are created in the directory "variants".   <br><br>
+     (note) Files "rice_dbSNP_variants.vcf.gz" and "rice_dbSNP_variants.vcf.gz.tbi" are created in the directory "variants".   <br><br>
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB") 
+    gatk.variant_call("rice","IRGSP-1.0_genome_full.fa", "pseudoDB") 
     ```
-    (note) FIles "human_pseudoDB_variants.vcf.gz" and "human_pseudoDB_variants.vcf.gz.tbi" are created in the directory "variants".
+    (note) FIles "rice_pseudoDB_variants.vcf.gz" and "rice_pseudoDB_variants.vcf.gz.tbi" are created in the directory "variants".
 <br>
 
  9.	Estimate sample error rate   
   
 	  <b> Format: gatk.error_rate("species_name", "sample_name", "reference", "name of database", "db_type")   </b>
     ```
-    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_dbSNP.vcf.gz", "dbSNP")   
+    gatk.error_rate("rice","IRIS_313-10886", "IRGSP-1.0_genome_full.fa", "dbSNP")   
     ```    
-    (note) File "HG00096_dbSNP_erate" is created in the directory "error".   <br><br>
+    (note) File "IRIS_313-10886_dbSNP_erate" is created in the directory "error".   <br><br>
     ```    
-    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_pseudoDB.vcf.gz", "pseudoDB")   
+    gatk.error_rate("rice","IRIS_313-10886", "IRGSP-1.0_genome_full.fa", "pseudoDB")   
     ```    
-    (note) File "HG00096_pseudoDB_erate" is created in the directory "error".
+    (note) File "IRIS_313-10886_pseudoDB_erate" is created in the directory "error".
   
   <br>
 
@@ -260,13 +260,13 @@ ___$mkdir rice___      <br>
     <b> Format: gatk.qs_model("species_name", "sample_name", "db_type")</b>   
 
     ``` 
-    gatk.qs_model("human","HG00096", "dbSNP")___   
+    gatk.qs_model("rice","IRIS_313-10886", "dbSNP")___   
     ```  
-      (note) File "HG00096_dbSNP_qs" is created in the directory "model"   <br><br>
+      (note) File "IRIS_313-10886_dbSNP_qs" is created in the directory "model"   <br><br>
     ```  
-    gatk.qs_model("human","HG00096", "pseudoDB") 
+    gatk.qs_model("rice","IRIS_313-10886", "pseudoDB") 
     ```  
-      (note) File "HG00096_pseudoDB_qs" is created in directory "model"   
+      (note) File "IRIS_313-10886_pseudoDB_qs" is created in directory "model"   
   
 <br><br>
 ####  End of tutorial  
