@@ -109,8 +109,8 @@ ___$mkdir chickpea___      <br>
     __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca5.vcf.gz__    
     __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca6.vcf.gz__    
     __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca7.vcf.gz__    
-    __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca8.vcf.gz__    
-    __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca1.vcf.gz__    
+    __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca8.vcf.gz__    <br>
+
     __$cat vcf_chr_Ca1.vcf.gz vcf_chr_Ca2.vcf.gz vcf_chr_Ca3.vcf.gz vcf_chr_Ca4.vcf.gz vcf_chr_Ca5.vcf.gz vcf_chr_Ca6.vcf.gz vcf_chr_Ca7.vcf.gz vcf_chr_Ca8.vcf.gz > chickpea_dbSNP.vcf.gz__    
 
     b.	Download the pseudoDB of chickpea    
