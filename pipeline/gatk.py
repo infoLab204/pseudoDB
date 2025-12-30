@@ -139,10 +139,10 @@ def qs_recal(*recal) :
     # run by sample
     for sample in sample_list : 
         # BaseRecalibrator 
-        os.system(f"java -jar {home_path}{GATK} -T BaseRecalibrator -R {home_path}/{species}/data/ref/{reference_file} -I {home_path}/{species}/module/align/{sample}_aligned.bam  -knownSites {home_path}/{species}/data/db/{database} -o {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table &> {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table.log")
+        os.system(f"java -jar {home_path}{GATK} BaseRecalibrator -R {home_path}/{species}/data/ref/{reference_file} -I {home_path}/{species}/module/align/{sample}_aligned.bam  --known-sites {home_path}/{species}/data/db/{database} -O {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table &> {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table.log")
 
-        # PrintReads
-        os.system(f"java -jar {home_path}{GATK} -T PrintReads -R {home_path}/{species}/data/ref/{reference_file} -I {home_path}/{species}/module/align/{sample}_aligned.bam  -BQSR {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table -o {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibrated.bam &> {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibrated_bam.log")
+        # ApplyBQSR
+        os.system(f"java -jar {home_path}{GATK}  ApplyBQSR -R {home_path}/{species}/data/ref/{reference_file} -I {home_path}/{species}/module/align/{sample}_aligned.bam   --bqsr-recal-file {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table -O {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibrated.bam &> {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibrated_bam.log")
         
         # delete file
         os.system(f"rm -rf {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table  {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibration_table.log {home_path}/{species}/module/machine/{sample}_{dbtype}_recalibrated_bam.log")
