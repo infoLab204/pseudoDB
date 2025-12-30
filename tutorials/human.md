@@ -264,7 +264,7 @@ ___$mkdir human___      <br>
     <b> Format: gatk.qs_model("species_name", "sample_name", "db_type")</b>   
 
     ``` 
-    gatk.qs_model("human","HG00096", "dbSNP")___   
+    gatk.qs_model("human","HG00096", "dbSNP")      
     ```  
       (note) File "HG00096_dbSNP_qs" is created in the directory "model"   <br><br>
     ```  
