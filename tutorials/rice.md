@@ -260,7 +260,7 @@ ___$mkdir rice___      <br>
     <b> Format: gatk.qs_model("species_name", "sample_name", "db_type")</b>   
 
     ``` 
-    gatk.qs_model("rice","IRIS_313-10886", "dbSNP")___   
+    gatk.qs_model("rice","IRIS_313-10886", "dbSNP")     
     ```  
       (note) File "IRIS_313-10886_dbSNP_qs" is created in the directory "model"   <br><br>
     ```  
