@@ -67,11 +67,11 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 
 ## Part II: Data download
 1. Create the required directories  
-    a. If you are working with chickpea data, create a directory named "human" in your home directory.    
+    a. If you are working with chickpea data, create a directory named "chickpea" in your home directory.    
 ___$mkdir chickpea___      <br>
 
     b. In the "chickpea" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
-   ___$cd human___    
+   ___$cd chickpea___    
    ___$mkdir data module___      <br>
    
     c. Navigate to the "data" directory and create the three sub-directories: "fastq", "ref", and "db" (see Fig. 1).    
