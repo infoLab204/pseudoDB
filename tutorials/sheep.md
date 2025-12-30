@@ -68,7 +68,7 @@ ___$mv gatk-package-4.6.0-local.jar  GenomeAnalysisTk.jar___         &nbsp;&nbsp
 ## Part II: Data download
 1. Create the required directories  
     a. If you are working with sheep data, create a directory named "sheep" in your home directory.    
-___$mkdir human___      <br>
+___$mkdir sheep___      <br>
 
     b. In the "sheep" directory, create two sub-directories, "data" and "module" (see Fig. 1).    
    ___$cd sheep___    
