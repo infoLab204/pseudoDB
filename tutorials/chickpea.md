@@ -101,7 +101,7 @@ ___$mkdir chickpea___      <br>
   __$mv GCA_000331145.1_ASM33114v1_genomic.fna  car_ref_ASM33114v1_full.fa__  # change reference name
 
 6.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
-    a.	Download dbSNP of human and assign a new name to it.   
+    a.	Download dbSNP of chickpea and assign a new name to it.   
       __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca1.vcf.gz__    
      __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca2.vcf.gz__    
     __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca3.vcf.gz__    
@@ -113,7 +113,7 @@ ___$mkdir chickpea___      <br>
     __$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/chickpea_3827/VCF/vcf_chr_Ca1.vcf.gz__    
     __$cat vcf_chr_Ca1.vcf.gz vcf_chr_Ca2.vcf.gz vcf_chr_Ca3.vcf.gz vcf_chr_Ca4.vcf.gz vcf_chr_Ca5.vcf.gz vcf_chr_Ca6.vcf.gz vcf_chr_Ca7.vcf.gz vcf_chr_Ca8.vcf.gz > chickpea_dbSNP.vcf.gz__    
 
-    b.	Download the pseudoDB of human    
+    b.	Download the pseudoDB of chickpea    
       https://zenodo.org/record/7487929/files/chickpea_pseudoDB.vcf.gz?download=1       
       
 <br>
