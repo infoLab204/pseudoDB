@@ -102,11 +102,11 @@ ___$mkdir sheep___      <br>
   __$ mv GCA_000298735.2_Oar_v4.0_genomic.fna oar_ref_Oar_v4.0_full.fa__  # change reference name
 
 6.	Navigate to the “db” directory and download two variant databases: dbSNP and pseudoDB.  <br>
-    a.	Download dbSNP of human and assign a new name to it.   
+    a.	Download dbSNP of sheep and assign a new name to it.   
       ___$wget https://ftp.ncbi.nih.gov/snp/organisms/archive/sheep_9940/VCF/00-All.vcf.gz___  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# download   
       ___$mv 00-All.vcf.gz      sheep_dbSNP.vcf.gz___        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# change DB name    
 
-    b.	Download the pseudoDB of human    
+    b.	Download the pseudoDB of sheep    
       https://zenodo.org/record/7488425/files/sheep_pseudoDB.vcf.gz?download=1       
       
 <br>
