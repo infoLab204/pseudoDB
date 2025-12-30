@@ -85,7 +85,7 @@ ___$mkdir chickpea___      <br>
 
 3.	Navigate to the “fastq” directory and download FASTQ file
     (note) You can download more than one sample for variant calling, but in this tutorial we will focus on using just a single sample.      <br>       
-    a. Visit the website: a. https://db.cngb.org/search/project/CNP0000370/       <br>
+    a. Visit the website: https://db.cngb.org/search/project/CNP0000370/       <br>
   	
     b. Search for sample ID "CNS0051757" for "SRR5183095".    <br>
  	
