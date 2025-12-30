@@ -120,7 +120,7 @@ ___$mkdir rice___      <br>
 ## Part III: Variant calling with analysis
 1.	Download "gatk.py" module from the github repository into directory "tools".   
     ```
-    $curl -L -O https://github.com/infoLab204/pseudoDB/pipeline/raw/main/gatk.py # download "gatk.py" module   
+    $curl -L -O https://raw.githubusercontent.com/infoLab204/pseudoDB/refs/heads/main/pipeline/gatk.py # download "gatk.py" module   
     ```
 
 2.	Go to the directory "tools" and import the module as follows.   
