@@ -186,7 +186,7 @@ ___$mkdir sheep___      <br>
     ``` 
     gatk.pseudo_db("sheep","oar_ref_Oar_v4.0_full.fa")       
     ``` 
-    (note) File "human_pseudoDB.vcf.gz" and "human_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
+    (note) File "sheep_pseudoDB.vcf.gz" and "sheep_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
     
 <br>
 
