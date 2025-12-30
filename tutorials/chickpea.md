@@ -121,7 +121,7 @@ ___$mkdir chickpea___      <br>
 ## Part III: Variant calling with analysis
 1.	Download "gatk.py" module from the github repository into directory "tools".   
     ```
-    $curl -L -O https://github.com/infoLab204/pseudo_DB/raw/main/gatk.py # download "gatk.py" module   
+    $curl -L -O https://github.com/infoLab204/pseudoDB/pipeline/raw/main/gatk.py # download "gatk.py" module   
     ```
 
 2.	Go to the directory "tools" and import the module as follows.   
@@ -145,7 +145,7 @@ ___$mkdir chickpea___      <br>
        <b>Format: gatk.set_wd("species_name")</b>       
 	
     ```
-    gatk.set_wd("human") 
+    gatk.set_wd("chickpea") 
     ```
 
     The list of subdirectories created under directory "module":   
@@ -163,25 +163,25 @@ ___$mkdir chickpea___      <br>
     <b>Format: gatk.pre_align("species_name", "reference_file")   </b>
 
     ```
-	 gatk.pre_align("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa")   
+	 gatk.pre_align("chickpea", "car_ref_ASM33114v1_full.fa")   
     ```    
     The following files are created in the directory "ref":
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.amb
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.ann
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.bwt
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.pac
-    *	GRCh38_full_analysis_set_plus_decoy_hla.fa.sa
-    *	GRCh38_full_analysis_set_plus_decoy_hla.dict 
+    *	car_ref_ASM33114v1_full.fa.amb
+    *	car_ref_ASM33114v1_full.fa.ann
+    *	car_ref_ASM33114v1_full.fa.bwt
+    *	car_ref_ASM33114v1_full.fa.fai
+    *	car_ref_ASM33114v1_full.fa.pac
+    *	car_ref_ASM33114v1_full.fa.sa
+    *	car_ref_ASM33114v1_full.dict 
 <br>
 
 5.	Align FASTQ file of single samples to the reference.    <br>
 
     <b> Format: gatk.align_fastq("species_name", "reference", "sample_name") </b>       
     ```
-    gatk.align_fastq("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa","HG00096")       
+    gatk.align_fastq("chickpea", "car_ref_ASM33114v1_full.fa","SRR5183095")       
     ``` 
-    (note) Files HG00096_aligned.bam and HG00096_aligned.bai are created in the directory “align” with a sample HG00096.    <br>        
+    (note) Files SRR5183095_aligned.bam and SRR5183095_aligned.bai are created in the directory “align” with a sample SRR5183095.    <br>        
 
     <br>
 
@@ -191,9 +191,9 @@ ___$mkdir chickpea___      <br>
     (note) Constructed pseudoDB used all samples in the “align” directory.        
     <br>
     ``` 
-    gatk.pseudo_db("human","GRCh38_full_analysis_set_plus_decoy_hla.fa")       
+    gatk.pseudo_db("chickpea","car_ref_ASM33114v1_full.fa")       
     ``` 
-    (note) File "human_pseudoDB.vcf.gz" and "human_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
+    (note) File "chickpea_pseudoDB.vcf.gz" and "chickpea_pseudoDB.vcf.gz.tbi" are created in the directory "db".    
     
 <br>
 
@@ -204,13 +204,13 @@ ___$mkdir chickpea___      <br>
     
     (note) The argument "db_type" can be either "dbSNP" or "pseudoDB"   <br><br>
      ```
-     gatk.qs_recal("human", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP", "HG00096")     
+     gatk.qs_recal("chickpea", "car_ref_ASM33114v1_full.fa", "dbSNP", "SRR5183095")     
      ```
-     (note) Files HG00096_dbSNP_recalibrated.bam and HG00096_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
+     (note) Files SRR5183095_dbSNP_recalibrated.bam and SRR5183095_dbSNP_recalibrated.bai are created in the directory "machine".  <br><br> 
      ```
-     gatk.qs_recal("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB", "HG00096")          
+     gatk.qs_recal("chickpea","car_ref_ASM33114v1_full.fa", "pseudoDB", "SRR5183095")          
      ```     
-     (note) Files HG00096_pseudoDB_recalibrated.bam and HG00096_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
+     (note) Files SRR5183095_pseudoDB_recalibrated.bam and SRR5183095_pseudoDB_recalibrated.bai are created in the directory "machine".  <br><br> 
      
   <br>
 
@@ -220,38 +220,38 @@ ___$mkdir chickpea___      <br>
 	  <b>Format: gatk.variant_call("species_name", "reference", "db_type","sample_name")  </b> 
 
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP","HG00096")
+    gatk.variant_call("chickpea","car_ref_ASM33114v1_full.fa", "dbSNP","SRR5183095")
     ```  
-     (note) Files "HG00096_dbSNP.g.vcf.gz" and "HG00096_dbSNP.g.vcf.gz.tbi" are created in the directory "variants".   <br><br>
+     (note) Files "SRR5183095_dbSNP.g.vcf.gz" and "SRR5183095_dbSNP.g.vcf.gz.tbi" are created in the directory "variants".   <br><br>
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB","HG00096") 
+    gatk.variant_call("chickpea","car_ref_ASM33114v1_full.fa", "pseudoDB","SRR5183095") 
     ```
-    (note) FIles "HG00096_pseudoDB.g.vcf.gz" and "HG00096_pseudoDB.g.vcf.gz.tbi" are created in the directory "variants".
+    (note) FIles "SRR5183095_pseudoDB.g.vcf.gz" and "SRR5183095_pseudoDB.g.vcf.gz.tbi" are created in the directory "variants".
   	
     b. Joint-Call Cohort
   	  <b>Format: gatk.variant_joint_call("species_name", "reference", "db_type")  </b>
 
     ```
-    gatk.variant_joint_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "dbSNP")
+    gatk.variant_joint_call("chickpea","car_ref_ASM33114v1_full.fa", "dbSNP")
     ```  
-     (note) Files "human_dbSNP_variants.vcf.gz" and "human_dbSNP_variants.vcf.gz.tbi" are created in the directory "variants".   <br><br>
+     (note) Files "chickpea_dbSNP_variants.vcf.gz" and "chickpea_dbSNP_variants.vcf.gz.tbi" are created in the directory "variants".   <br><br>
     ```
-    gatk.variant_call("human","GRCh38_full_analysis_set_plus_decoy_hla.fa", "pseudoDB") 
+    gatk.variant_call("chickpea","car_ref_ASM33114v1_full.fa", "pseudoDB") 
     ```
-    (note) FIles "human_pseudoDB_variants.vcf.gz" and "human_pseudoDB_variants.vcf.gz.tbi" are created in the directory "variants".
+    (note) FIles "chickpea_pseudoDB_variants.vcf.gz" and "chickpea_pseudoDB_variants.vcf.gz.tbi" are created in the directory "variants".
 <br>
 
  9.	Estimate sample error rate   
   
 	  <b> Format: gatk.error_rate("species_name", "sample_name", "reference", "name of database", "db_type")   </b>
     ```
-    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_dbSNP.vcf.gz", "dbSNP")   
+    gatk.error_rate("chickpea","SRR5183095", "car_ref_ASM33114v1_full.fa", "chickpea_dbSNP.vcf.gz", "dbSNP")   
     ```    
-    (note) File "HG00096_dbSNP_erate" is created in the directory "error".   <br><br>
+    (note) File "SRR5183095_dbSNP_erate" is created in the directory "error".   <br><br>
     ```    
-    gatk.error_rate("human","HG00096", "GRCh38_full_analysis_set_plus_decoy_hla.fa", "human_pseudoDB.vcf.gz", "pseudoDB")   
+    gatk.error_rate("chickpea","SRR5183095", "car_ref_ASM33114v1_full.fa", "chickpea_pseudoDB.vcf.gz", "pseudoDB")   
     ```    
-    (note) File "HG00096_pseudoDB_erate" is created in the directory "error".
+    (note) File "SRR5183095_pseudoDB_erate" is created in the directory "error".
   
   <br>
 
@@ -261,13 +261,13 @@ ___$mkdir chickpea___      <br>
     <b> Format: gatk.qs_model("species_name", "sample_name", "db_type")</b>   
 
     ``` 
-    gatk.qs_model("human","HG00096", "dbSNP")___   
+    gatk.qs_model("chickpea","SRR5183095", "dbSNP")___   
     ```  
-      (note) File "HG00096_dbSNP_qs" is created in the directory "model"   <br><br>
+      (note) File "SRR5183095_dbSNP_qs" is created in the directory "model"   <br><br>
     ```  
-    gatk.qs_model("human","HG00096", "pseudoDB") 
+    gatk.qs_model("chickpea","SRR5183095", "pseudoDB") 
     ```  
-      (note) File "HG00096_pseudoDB_qs" is created in directory "model"   
+      (note) File "SRR5183095_pseudoDB_qs" is created in directory "model"   
   
 <br><br>
 ####  End of tutorial  
